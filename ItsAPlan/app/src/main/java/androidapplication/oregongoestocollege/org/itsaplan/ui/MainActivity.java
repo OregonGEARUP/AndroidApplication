@@ -1,11 +1,13 @@
 package androidapplication.oregongoestocollege.org.itsaplan.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 
@@ -18,6 +20,8 @@ import java.io.IOException;
 import androidapplication.oregongoestocollege.org.itsaplan.R;
 import androidapplication.oregongoestocollege.org.itsaplan.blocks.MasterBlock;
 import androidapplication.oregongoestocollege.org.itsaplan.blocks.StartingBlock;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         String starterBlockFileName = "blocks.json";
         String originalUrl = "https://oregongoestocollege.org/mobileApp/json/" + starterBlockFileName;
@@ -152,5 +157,12 @@ public class MainActivity extends AppCompatActivity {
         AlertDialogFragment dialog = new AlertDialogFragment();
         dialog.show(getFragmentManager(), "error_dialog");
 
+    }
+
+    @OnClick(R.id.getStartedButton)
+    public void startingBlockActivity(View view){
+        Log.d(TAG, "tapped the button: " );
+        Intent intent = new Intent(this, StartingBlockActivity.class);
+        startActivity(intent);
     }
 }
