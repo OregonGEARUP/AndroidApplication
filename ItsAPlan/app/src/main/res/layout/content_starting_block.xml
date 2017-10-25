@@ -5,23 +5,49 @@
     tools:context="androidapplication.oregongoestocollege.org.itsaplan.ui.StartingBlockActivity"
     android:background="@drawable/bg_gradient">
 
-
-
-    <ListView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@android:id/list"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="62dp" />
-
-    <TextView
-        android:id="@android:id/empty"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/empty_data_from_server"
-        android:textColor="@android:color/holo_red_light" />
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_alignParentStart="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/startingBlockTitleTextLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="68dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="54dp"
+            android:paddingRight="54dp"
+            android:paddingTop="4dp"
+            android:text="Follow the 10 key steps to apply, pay and go to college."
+            android:textSize="19dp"
+            android:textStyle="italic" />
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/startingBlockTitleTextLabel"
+            android:layout_marginTop="12dp"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
+
+        <TextView
+            android:id="@android:id/empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/empty_data_from_server"
+            android:textColor="@android:color/holo_red_light" />
+
+   </LinearLayout>
 
 </RelativeLayout>

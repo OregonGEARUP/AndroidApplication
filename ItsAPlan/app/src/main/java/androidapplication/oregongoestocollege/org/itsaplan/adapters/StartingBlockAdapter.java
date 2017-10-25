@@ -11,6 +11,7 @@ import org.w3c.dom.Text;
 
 import androidapplication.oregongoestocollege.org.itsaplan.R;
 import androidapplication.oregongoestocollege.org.itsaplan.blocks.StartingBlock;
+import androidapplication.oregongoestocollege.org.itsaplan.ui.MainActivity;
 
 /**
  * Created by Bikram Maharjan on 10/24/17.
@@ -54,6 +55,7 @@ public class StartingBlockAdapter extends BaseAdapter {
             view = LayoutInflater.from(mContext).inflate(R.layout.starting_block_list,
                     null);
             holder = new ViewHolder();
+            holder.startingBlockCountLabel = (TextView) view.findViewById(R.id.startingBlockCountLabel);
             holder.startingBlockNameLabel = (TextView) view.findViewById(R.id.startingBlockNameLabel);
             view.setTag(holder);
         }
@@ -62,12 +64,15 @@ public class StartingBlockAdapter extends BaseAdapter {
         }
 
         StartingBlock startingBlock= mStartingBlocks[position];
+        holder.startingBlockCountLabel.setText(startingBlock.getCountId() + ".");
         holder.startingBlockNameLabel.setText(startingBlock.getTitle());
 
         return view;
     }
 
     private static class ViewHolder {
+        TextView startingBlockCountLabel;
         TextView startingBlockNameLabel;
+
     }
 }

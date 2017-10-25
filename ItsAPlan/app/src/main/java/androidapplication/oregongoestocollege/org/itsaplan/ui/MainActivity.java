@@ -31,6 +31,7 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+    public static final String BLOCK_NAME = "BLOCK_NAME";
 
     private MasterBlock mMasterBlock;
 
@@ -110,11 +111,13 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Block JSON Array length!: " + singleBlockLength.length());
 
 
-
+        int counter = 1; // for the incremental value of blocks
         for(int i=0;i<singleBlockLength.length();i++){
             JSONObject jsonBlock = singleBlockLength.getJSONObject(i);
             StartingBlock startingBlock = new StartingBlock();
 
+
+            startingBlock.setCountId(counter++);
             // Get id name
             startingBlock.setIds(jsonBlock.getString("ids"));
             // Get block title
@@ -163,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
     public void startingBlockActivity(View view){
         Log.d(TAG, "tapped the button: " );
         Intent intent = new Intent(this, StartingBlockActivity.class);
+        intent.putExtra(BLOCK_NAME, mMasterBlock.getStartingBlock());
         startActivity(intent);
     }
 }
