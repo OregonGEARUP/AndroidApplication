@@ -35,18 +35,27 @@ public class MainActivity extends AppCompatActivity {
 
     private MasterBlock mMasterBlock;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+
+        // Call the function
         getBlocks();
 
         Log.d(TAG, "Main UI code running!");
 
     }
 
+
+
+
+
+    // Check Network is available + get the data from JSON file
     private void getBlocks() {
         String starterBlockFileName = "blocks.json";
         String originalUrl = "https://oregongoestocollege.org/mobileApp/json/" + starterBlockFileName;
@@ -68,10 +77,10 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     try {
-                        String jsonData = response.body().string();
-                        Log.v(TAG, jsonData);
+                        String incommingJSONData = response.body().string();
+                        Log.v(TAG, incommingJSONData);
                         if (response.isSuccessful()){
-                            mMasterBlock = parseMasterBlockDetails(jsonData);
+                            mMasterBlock = parseMasterBlockDetails(incommingJSONData);
                         }
                         else {
                             alertUserAboutError();
@@ -92,19 +101,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private MasterBlock parseMasterBlockDetails(String jsonData) throws JSONException{
+
+
+
+    //e
+    private MasterBlock parseMasterBlockDetails(String incommingJSONData) throws JSONException{
         MasterBlock masterBlock = new MasterBlock();
 
-        masterBlock.setListOfBlock(getStartingBlockDetails(jsonData));
-
+        masterBlock.setListOfBlock(getStartingBlockDetails(incommingJSONData));
 
         return masterBlock;
 
     }
 
-    // Get the value from blocks.json
-    private ListOfBlock[] getStartingBlockDetails(String jsonData) throws JSONException {
-        JSONArray singleBlockLength = new JSONArray(jsonData);
+
+
+
+
+    // Get the value from blocks.json and parse the data
+    private ListOfBlock[] getStartingBlockDetails(String incommingJSONData) throws JSONException {
+        JSONArray singleBlockLength = new JSONArray(incommingJSONData);
 
 
 
@@ -143,9 +159,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     };
+    // End of Get the value from blocks.json
 
 
 
+
+
+
+
+    // Check if Network is available
     private boolean isNetworkAvailable() {
         ConnectivityManager manager = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -158,30 +180,39 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return isAvailable;
-    }
+    };
+    // End of Check if Network is available
 
+
+
+
+
+
+
+    // Alert error if there is no such block filename
     private void alertUserAboutError() {
         AlertDialogFragment dialog = new AlertDialogFragment();
         dialog.show(getFragmentManager(), "error_dialog");
 
-    }
+    };
+    // End of Alert error if there is no such block filename
 
+
+
+
+
+    // Onclick with Butterknife. Open the Blocks.json avtivity
     @OnClick(R.id.getStartedButton)
     public void startingBlockActivity(View view){
         Log.d(TAG, "tapped the button: " );
+
         Toast.makeText(this, getString(R.string.button_pressed), Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(this, ListOfBlockActivity.class);
         intent.putExtra(BLOCK_NAME, mMasterBlock.getListOfBlock());
         startActivity(intent);
-    }
+    };
+    //End of Onclick with Butterknife. Open the Blocks.json avtivity
 
-//    @OnClick(R.id.startingBlockNameLabel)
-//    public void startingBlockActivity(View view){
-//        Toast.makeText(this, getString(R.string.button_pressed), Toast.LENGTH_LONG).show();
-//
-//
-//
-//
-//    }
+
 }
