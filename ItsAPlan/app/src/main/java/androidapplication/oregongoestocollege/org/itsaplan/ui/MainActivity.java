@@ -19,7 +19,7 @@ import java.io.IOException;
 
 import androidapplication.oregongoestocollege.org.itsaplan.R;
 import androidapplication.oregongoestocollege.org.itsaplan.blocks.MasterBlock;
-import androidapplication.oregongoestocollege.org.itsaplan.blocks.StartingBlock;
+import androidapplication.oregongoestocollege.org.itsaplan.blocks.ListOfBlock;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
@@ -41,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        getBlocks();
+
+        Log.d(TAG, "Main UI code running!");
+
+    }
+
+    private void getBlocks() {
         String starterBlockFileName = "blocks.json";
         String originalUrl = "https://oregongoestocollege.org/mobileApp/json/" + starterBlockFileName;
 
@@ -80,31 +87,28 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             Toast.makeText(this, getString(R.string.network_unavailable), Toast.LENGTH_LONG).show();
-        };
-
-        Log.d(TAG, "Main UI code running!");
-
+        }
+        ;
     }
 
 
     private MasterBlock parseMasterBlockDetails(String jsonData) throws JSONException{
         MasterBlock masterBlock = new MasterBlock();
 
-        masterBlock.setStartingBlock(getStartingBlockDetails(jsonData));
+        masterBlock.setListOfBlock(getStartingBlockDetails(jsonData));
 
 
         return masterBlock;
 
-
     }
 
     // Get the value from blocks.json
-    private StartingBlock[] getStartingBlockDetails(String jsonData) throws JSONException {
+    private ListOfBlock[] getStartingBlockDetails(String jsonData) throws JSONException {
         JSONArray singleBlockLength = new JSONArray(jsonData);
 
 
 
-        StartingBlock[] blocks = new StartingBlock[singleBlockLength.length()];
+        ListOfBlock[] blocks = new ListOfBlock[singleBlockLength.length()];
 
 
         Log.d(TAG, "Block JSON Array!: " + singleBlockLength);
@@ -114,18 +118,18 @@ public class MainActivity extends AppCompatActivity {
         int counter = 1; // for the incremental value of blocks
         for(int i=0;i<singleBlockLength.length();i++){
             JSONObject jsonBlock = singleBlockLength.getJSONObject(i);
-            StartingBlock startingBlock = new StartingBlock();
+            ListOfBlock listOfBlock = new ListOfBlock();
 
 
-            startingBlock.setCountId(counter++);
+            listOfBlock.setCountId(counter++);
             // Get id name
-            startingBlock.setIds(jsonBlock.getString("ids"));
+            listOfBlock.setIds(jsonBlock.getString("ids"));
             // Get block title
-            startingBlock.setTitle(jsonBlock.getString("title"));
+            listOfBlock.setTitle(jsonBlock.getString("title"));
             // Get block file name
-            startingBlock.setBlockFileName(jsonBlock.getString("blockFileName"));
+            listOfBlock.setBlockFileName(jsonBlock.getString("blockFileName"));
 
-            blocks[i] = startingBlock;
+            blocks[i] = listOfBlock;
 
             Log.d(TAG, "Block JSON **SINGLE** Array!: " + blocks[i]);
 
@@ -165,8 +169,19 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.getStartedButton)
     public void startingBlockActivity(View view){
         Log.d(TAG, "tapped the button: " );
-        Intent intent = new Intent(this, StartingBlockActivity.class);
-        intent.putExtra(BLOCK_NAME, mMasterBlock.getStartingBlock());
+        Toast.makeText(this, getString(R.string.button_pressed), Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(this, ListOfBlockActivity.class);
+        intent.putExtra(BLOCK_NAME, mMasterBlock.getListOfBlock());
         startActivity(intent);
     }
+
+//    @OnClick(R.id.startingBlockNameLabel)
+//    public void startingBlockActivity(View view){
+//        Toast.makeText(this, getString(R.string.button_pressed), Toast.LENGTH_LONG).show();
+//
+//
+//
+//
+//    }
 }

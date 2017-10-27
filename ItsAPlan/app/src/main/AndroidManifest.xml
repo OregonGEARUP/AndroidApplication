@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.StartingBlockActivity"
+            android:name=".ui.ListOfBlockActivity"
             android:label="@string/title_activity_starting_block"
             android:parentActivityName=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

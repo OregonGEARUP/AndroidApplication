@@ -7,38 +7,35 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import androidapplication.oregongoestocollege.org.itsaplan.R;
-import androidapplication.oregongoestocollege.org.itsaplan.blocks.StartingBlock;
-import androidapplication.oregongoestocollege.org.itsaplan.ui.MainActivity;
+import androidapplication.oregongoestocollege.org.itsaplan.blocks.ListOfBlock;
 
 /**
  * Created by Bikram Maharjan on 10/24/17.
  */
 
-public class StartingBlockAdapter extends BaseAdapter {
+public class ListOfBlockAdapter extends BaseAdapter {
 
     private Context mContext;
-    private StartingBlock[] mStartingBlocks;
+    private ListOfBlock[] mListOfBlocks;
 
 
-    public StartingBlockAdapter(Context context, StartingBlock[]
-            startingBlocks){
+    public ListOfBlockAdapter(Context context, ListOfBlock[]
+            listOfBlocks){
 
         mContext = context;
-        mStartingBlocks = startingBlocks;
+        mListOfBlocks = listOfBlocks;
     }
 
 
     @Override
     public int getCount() {
-        return mStartingBlocks.length;
+        return mListOfBlocks.length;
     }
 
     @Override
     public Object getItem(int position) {
-        return mStartingBlocks[position];
+        return mListOfBlocks[position];
     }
 
     @Override
@@ -63,9 +60,9 @@ public class StartingBlockAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        StartingBlock startingBlock= mStartingBlocks[position];
-        holder.startingBlockCountLabel.setText(startingBlock.getCountId() + ".");
-        holder.startingBlockNameLabel.setText(startingBlock.getTitle());
+        ListOfBlock listOfBlock = mListOfBlocks[position];
+        holder.startingBlockCountLabel.setText(listOfBlock.getCountId() + ".");
+        holder.startingBlockNameLabel.setText(listOfBlock.getTitle());
 
         return view;
     }

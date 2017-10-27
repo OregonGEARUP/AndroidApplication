@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by Bikram Maharjan on 10/20/17.
  */
 
-public class StartingBlock implements Parcelable{
+public class ListOfBlock implements Parcelable{
     private int mCountId;
     private String mIds;
     private String mTitle;
@@ -62,24 +62,24 @@ public class StartingBlock implements Parcelable{
         parcel.writeString(mBlockFileName);
     }
 
-    private StartingBlock(Parcel in){
+    private ListOfBlock(Parcel in){
         mCountId = in.readInt();
         mIds = in.readString();
         mTitle = in.readString();
         mBlockFileName = in.readString();
     }
 
-    public StartingBlock() {}
+    public ListOfBlock() {}
 
-    public static final Creator<StartingBlock> CREATOR = new Creator<StartingBlock>() {
+    public static final Creator<ListOfBlock> CREATOR = new Creator<ListOfBlock>() {
         @Override
-        public StartingBlock createFromParcel(Parcel parcel) {
-            return new StartingBlock(parcel);
+        public ListOfBlock createFromParcel(Parcel parcel) {
+            return new ListOfBlock(parcel);
         }
 
         @Override
-        public StartingBlock[] newArray(int i) {
-            return new StartingBlock[i];
+        public ListOfBlock[] newArray(int i) {
+            return new ListOfBlock[i];
         }
     };
 

@@ -5,14 +5,14 @@ package androidapplication.oregongoestocollege.org.itsaplan.blocks;
  */
 
 public class MasterBlock {
-    private StartingBlock[] mStartingBlock;
+    private ListOfBlock[] mListOfBlock;
 
 
-    public StartingBlock[] getStartingBlock() {
-        return mStartingBlock;
+    public ListOfBlock[] getListOfBlock() {
+        return mListOfBlock;
     }
 
-    public void setStartingBlock(StartingBlock[] startingBlock) {
-        mStartingBlock = startingBlock;
+    public void setListOfBlock(ListOfBlock[] listOfBlock) {
+        mListOfBlock = listOfBlock;
     }
 }

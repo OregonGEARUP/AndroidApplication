@@ -4,22 +4,16 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.ArrayAdapter;
 
 import java.util.Arrays;
 
 import androidapplication.oregongoestocollege.org.itsaplan.R;
-import androidapplication.oregongoestocollege.org.itsaplan.adapters.StartingBlockAdapter;
-import androidapplication.oregongoestocollege.org.itsaplan.blocks.StartingBlock;
+import androidapplication.oregongoestocollege.org.itsaplan.adapters.ListOfBlockAdapter;
+import androidapplication.oregongoestocollege.org.itsaplan.blocks.ListOfBlock;
 
-public class StartingBlockActivity extends ListActivity {
+public class ListOfBlockActivity extends ListActivity {
 
-    private StartingBlock[] mStartingBlock;
+    private ListOfBlock[] mListOfBlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +30,10 @@ public class StartingBlockActivity extends ListActivity {
         Intent intent = getIntent();
         Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.BLOCK_NAME);
 
-        mStartingBlock = Arrays.copyOf(parcelables, parcelables.length, StartingBlock[].class);
+        mListOfBlock = Arrays.copyOf(parcelables, parcelables.length, ListOfBlock[].class);
 
-        StartingBlockAdapter adapter = new StartingBlockAdapter(this, mStartingBlock);
+        ListOfBlockAdapter adapter = new ListOfBlockAdapter(this, mListOfBlock);
+
 
         setListAdapter(adapter);
 
