@@ -4,10 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -28,6 +33,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
@@ -35,7 +42,31 @@ public class MainActivity extends AppCompatActivity {
 
     private MasterBlock mMasterBlock;
 
+    private TextView mTextMessage;
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.nav_checklist:
+                    mTextMessage.setText(R.string.nav_title_checklist);
+
+                    return true;
+                case R.id.nav_myplan:
+                    return true;
+
+                case R.id.nav_passwords:
+                    mTextMessage.setText(R.string.nav_title_password);
+                    return true;
+                case R.id.nav_info  :
+                    mTextMessage.setText(R.string.nav_title_info);
+                    return true;
+            }
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +74,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        mTextMessage = (TextView) findViewById(R.id.message);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
 
         // Call the function
         getBlocks();
+
+
 
         Log.d(TAG, "Main UI code running!");
 
@@ -57,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Check Network is available + get the data from JSON file
     private void getBlocks() {
+
         String starterBlockFileName = "blocks.json";
         String originalUrl = "https://oregongoestocollege.org/mobileApp/json/" + starterBlockFileName;
 
@@ -202,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Onclick with Butterknife. Open the Blocks.json avtivity
-    @OnClick(R.id.getStartedButton)
+    @OnClick(R.id.nav_checklist)
     public void startingBlockActivity(View view){
         Log.d(TAG, "tapped the button: " );
 
@@ -211,6 +249,25 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListOfBlockActivity.class);
         intent.putExtra(BLOCK_NAME, mMasterBlock.getListOfBlock());
         startActivity(intent);
+    };
+    //End of Onclick with Butterknife. Open the Blocks.json avtivity
+
+
+    // Open My Plan Activity
+    @OnClick(R.id.nav_myplan)
+    public void myPlanActivity(View view){
+        Log.d(TAG, "My Plan Toast " );
+
+        Toast.makeText(this, getString(R.string.button_pressed_myplan), Toast.LENGTH_LONG).show();
+
+
+
+        Intent intent = new Intent(this, MyPlan.class);
+        EditText editText = (EditText) findViewById(R.id.editText);
+        String message = "Hi There My Plan";
+        intent.putExtra(BLOCK_NAME, message);
+        startActivity(intent);
+
     };
     //End of Onclick with Butterknife. Open the Blocks.json avtivity
 

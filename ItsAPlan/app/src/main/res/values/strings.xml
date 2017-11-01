@@ -8,4 +8,11 @@
     <string name="title_activity_starting_block">StartingBlockActivity</string>
     <string name="hello_world">Hello World</string>
     <string name="empty_data_from_server">There is nothing to display. Data must be empty!</string>
+    <string name="nav_title_checklist">Checklist</string>
+    <string name="nav_title_myplan">My Plan</string>
+    <string name="nav_title_password">Passwords</string>
+    <string name="nav_title_info">Info</string>
+    <string name="title_home">title_home</string>
+    <string name="button_pressed_myplan">My Plan button</string>
+    <string name="title_activity_myplan">My Plan</string>
 </resources>
