@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="androidapplication.oregongoestocollege.org.itsaplan.ui.MyPlan"
+    tools:context="androidapplication.oregongoestocollege.org.itsaplan.ui.Info"
     android:background="@drawable/bg_gradient">
 
 
@@ -17,18 +17,6 @@
         android:orientation="vertical">
 
 
-
-
-        <TextView
-            android:id="@+id/myplan_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Start with the checklist; the info and deadlines you need will be here."
-            android:textSize="19sp"
-            android:layout_below="@+id/textView3"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="24dp" />
-
         <TextView
             android:id="@+id/message"
             android:layout_width="wrap_content"
@@ -36,7 +24,7 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/title_activity_myplan"
+            android:text="@string/nav_title_info"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

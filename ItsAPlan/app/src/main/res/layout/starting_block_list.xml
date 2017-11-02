@@ -13,10 +13,6 @@
     android:paddingTop="10dp"
     tools:background="#ffaabbcc">
 
-
-
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,7 +45,7 @@
                     android:paddingTop="15dp"
                     android:textColor="#ffffffff"
                     android:textSize="20sp"
-                    tools:text="Its a Plan" />
+                     />
 
             </LinearLayout>
 

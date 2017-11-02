@@ -9,6 +9,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -33,7 +34,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,27 +42,33 @@ public class MainActivity extends AppCompatActivity {
 
     private MasterBlock mMasterBlock;
 
-    private TextView mTextMessage;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.nav_checklist:
-                    mTextMessage.setText(R.string.nav_title_checklist);
+                    // Starting Block Activity in a function
+                    startingBlockActivity();
+                    break;
 
-                    return true;
                 case R.id.nav_myplan:
-                    return true;
+                    Intent intentMyPlan = new Intent(MainActivity.this, MyPlan.class);
+                    startActivity(intentMyPlan);
+                    break;
 
                 case R.id.nav_passwords:
-                    mTextMessage.setText(R.string.nav_title_password);
-                    return true;
+                    Intent intentPassword = new Intent(MainActivity.this, Password.class);
+                    startActivity(intentPassword);
+                    break;
+
                 case R.id.nav_info  :
-                    mTextMessage.setText(R.string.nav_title_info);
-                    return true;
+                    Intent intentInfo = new Intent(MainActivity.this, Info.class);
+                    startActivity(intentInfo);
+                    break;
             }
             return false;
         }
@@ -74,9 +80,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+
+
+
+
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        Menu menu = navigation.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
 
 
         // Call the function
@@ -236,39 +250,28 @@ public class MainActivity extends AppCompatActivity {
     // End of Alert error if there is no such block filename
 
 
+//    @OnClick(R.id.getStartedButton)
+//    public void getStartedButton(View view){
+//        startingBlockActivity();
+//    }
 
 
-
-    // Onclick with Butterknife. Open the Blocks.json avtivity
-    @OnClick(R.id.nav_checklist)
-    public void startingBlockActivity(View view){
-        Log.d(TAG, "tapped the button: " );
-
-        Toast.makeText(this, getString(R.string.button_pressed), Toast.LENGTH_LONG).show();
-
+    // Starting Block Activity in a function
+    public void startingBlockActivity(){
         Intent intent = new Intent(this, ListOfBlockActivity.class);
         intent.putExtra(BLOCK_NAME, mMasterBlock.getListOfBlock());
         startActivity(intent);
     };
-    //End of Onclick with Butterknife. Open the Blocks.json avtivity
 
 
     // Open My Plan Activity
-    @OnClick(R.id.nav_myplan)
-    public void myPlanActivity(View view){
-        Log.d(TAG, "My Plan Toast " );
-
-        Toast.makeText(this, getString(R.string.button_pressed_myplan), Toast.LENGTH_LONG).show();
-
-
-
-        Intent intent = new Intent(this, MyPlan.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String message = "Hi There My Plan";
-        intent.putExtra(BLOCK_NAME, message);
-        startActivity(intent);
-
-    };
+//    public void myPlanActivity(){
+//        Intent intent = new Intent(this, MyPlan.class);
+//        String message = "Hi There My Plan";
+//        intent.putExtra(BLOCK_NAME, message);
+//        startActivity(intent);
+//
+//    };
     //End of Onclick with Butterknife. Open the Blocks.json avtivity
 
 

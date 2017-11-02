@@ -4,7 +4,11 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,17 +26,49 @@ public class ListOfBlockActivity extends ListActivity {
 
     private ListOfBlock[] mListOfBlock;
 
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.nav_checklist:
+                    // Currently on Checklist
+                    break;
+
+                case R.id.nav_myplan:
+                    Intent intentMyPlan = new Intent(ListOfBlockActivity.this, MyPlan.class);
+                    startActivity(intentMyPlan);
+                    break;
+
+                case R.id.nav_passwords:
+                    Intent intentPassword = new Intent(ListOfBlockActivity.this, Password.class);
+                    startActivity(intentPassword);
+                    break;
+
+                case R.id.nav_info:
+                    Intent intentInfo = new Intent(ListOfBlockActivity.this, Info.class);
+                    startActivity(intentInfo);
+                    break;
+            }
+            return false;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starting_block);
 
-        // Test default adapter old code
-//        String[] blockNames = {"first ", "second", "third", "fourth"};
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_list_item_1, blockNames);
-//
-//        setListAdapter(adapter);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        Menu menu = navigation.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
+
+
 
         Intent intent = getIntent();
         Parcelable[] parcelables = intent.getParcelableArrayExtra(BLOCK_NAME);

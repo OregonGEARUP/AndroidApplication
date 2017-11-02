@@ -6,6 +6,41 @@
     tools:context="androidapplication.oregongoestocollege.org.itsaplan.ui.MainActivity"
     android:background="@drawable/bg_gradient">
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="@string/title_home"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Button
+            android:id="@+id/getStartedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#40ffffff"
+            android:text="Let's get started!"
+            android:textColor="#ff00aeef" />
+
+
+    </LinearLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,46 +56,9 @@
             android:layout_marginEnd="0dp"
             android:layout_marginStart="0dp"
             android:background="?android:attr/windowBackground"
-            app:menu="@menu/navigation"
-            tools:context="org.oregongoestocollege.gearup.activities.MainActivity"
-            android:baselineAligned="false" />
-
-
+            app:menu="@menu/navigation" />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="0dp"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/getStartedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#40ffffff"
-            android:text="Let's get started!"
-            android:textColor="#ff00aeef" />
-
-
-        <TextView
-            android:id="@+id/message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/title_home"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    </LinearLayout>
-
-
 
 
 </RelativeLayout>

@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,25 +22,32 @@
             </intent-filter>
         </activity>
 
+
+
         <activity
             android:name=".ui.ListOfBlockActivity"
-            android:label="@string/title_activity_starting_block"
-            android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="androidapplication.oregongoestocollege.org.itsaplan.ui.MainActivity" />
+            android:label="@string/nav_title_checklist"
+            android:parentActivityName=".ui.MainActivity">
+
         </activity>
 
 
         <activity
             android:name=".ui.MyPlan"
-            android:label="@string/title_activity_myplan"
-            android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="androidapplication.oregongoestocollege.org.itsaplan.ui.MainActivity" />
+            android:label="@string/nav_title_myplan"
+            android:parentActivityName=".ui.MainActivity">
+        </activity>
+
+
+        <activity android:name=".ui.Password"
+            android:label="@string/nav_title_password"
+            android:parentActivityName=".ui.MainActivity">
+        </activity>
+
+
+        <activity android:name=".ui.Info"
+            android:label="@string/nav_title_info"
+            android:parentActivityName=".ui.MainActivity">
         </activity>
     </application>
 
