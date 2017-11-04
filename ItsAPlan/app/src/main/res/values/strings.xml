@@ -29,5 +29,6 @@
     <string name="title_activity_myplan">Activity Title: My Plan</string>
     <string name="title_activity_password">Activity Title: Password</string>
     <string name="title_activity_info">Activity Title: Information</string>
+    <string name="title_welcome">Welcome to It\'s a Plan app!</string>
 
 </resources>

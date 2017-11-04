@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import androidapplication.oregongoestocollege.org.itsaplan.R;
@@ -43,7 +44,7 @@ public class Info extends MainActivity{
                     break;
 
                 case R.id.nav_passwords:
-                    Intent intentPassword = new Intent(Info.this, Info.class);
+                    Intent intentPassword = new Intent(Info.this, Password.class);
                     startActivity(intentPassword);
                     break;
 
@@ -61,6 +62,9 @@ public class Info extends MainActivity{
         setContentView(R.layout.activity_info);
 
         ButterKnife.bind(this);
+
+        WebView oregonGEARUPwebsite = (WebView) findViewById(R.id.webview);
+        oregonGEARUPwebsite.loadUrl("https://oregongoestocollege.org/5-things");
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

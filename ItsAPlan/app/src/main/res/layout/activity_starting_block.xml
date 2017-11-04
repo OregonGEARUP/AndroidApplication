@@ -22,7 +22,8 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <include layout="@layout/content_starting_block" />
+    <include layout="@layout/content_starting_block"
+        android:layout_height="444dp" />
 
 
 

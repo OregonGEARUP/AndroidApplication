@@ -36,6 +36,10 @@
             android:name=".ui.MyPlan"
             android:label="@string/nav_title_myplan"
             android:parentActivityName=".ui.MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MainActivity" />
         </activity>
 
 

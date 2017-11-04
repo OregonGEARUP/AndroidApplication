@@ -9,13 +9,17 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidapplication.oregongoestocollege.org.itsaplan.R;
 import androidapplication.oregongoestocollege.org.itsaplan.blocks.MasterBlock;
 import androidapplication.oregongoestocollege.org.itsaplan.blocks.ListOfBlock;
 import androidapplication.oregongoestocollege.org.itsaplan.ui.MainActivity;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static androidapplication.oregongoestocollege.org.itsaplan.ui.MainActivity.BLOCK_NAME;
 
@@ -23,7 +27,7 @@ import static androidapplication.oregongoestocollege.org.itsaplan.ui.MainActivit
  * Created by Bikram Maharjan on 11/1/17.
  */
 
-public class MyPlan extends MainActivity {
+public class MyPlan extends ListActivity {
     private MasterBlock mMasterBlock;
 
 
@@ -65,6 +69,13 @@ public class MyPlan extends MainActivity {
         setContentView(R.layout.activity_myplan);
         ButterKnife.bind(this);
 
+        String [] MyPlanOptions = {"Colleges", "Scholarships", "ACT / SAT", "Residency Info", "Calendar"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1,
+                MyPlanOptions);
+        setListAdapter(adapter);
+
+
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -75,4 +86,12 @@ public class MyPlan extends MainActivity {
 
 
     }
+
+//    @OnClick (R.id.CollegesMyPlan)
+//    public void startCollegesActivity(View view){
+//        Toast.makeText(this, "My Plan College", Toast.LENGTH_LONG).show();
+//
+//
+//    }
+
 }
