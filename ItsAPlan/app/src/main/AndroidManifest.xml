@@ -53,6 +53,20 @@
             android:label="@string/nav_title_info"
             android:parentActivityName=".ui.MainActivity">
         </activity>
+
+
+        <activity android:name=".ui.Actsat"
+            android:label="@string/nav_title_actsat"
+            android:parentActivityName=".ui.MyPlan">
+        </activity>
+
+
+        <activity android:name=".ui.ResidencyInfo"
+            android:label="@string/nav_title_residencyinfo"
+            android:parentActivityName=".ui.ResidencyInfo">
+
+        </activity>
+
     </application>
 
 </manifest>

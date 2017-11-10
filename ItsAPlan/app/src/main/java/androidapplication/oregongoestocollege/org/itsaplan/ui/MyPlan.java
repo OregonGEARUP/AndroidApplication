@@ -11,15 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidapplication.oregongoestocollege.org.itsaplan.R;
 import androidapplication.oregongoestocollege.org.itsaplan.blocks.MasterBlock;
-import androidapplication.oregongoestocollege.org.itsaplan.blocks.ListOfBlock;
-import androidapplication.oregongoestocollege.org.itsaplan.ui.MainActivity;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static androidapplication.oregongoestocollege.org.itsaplan.ui.MainActivity.BLOCK_NAME;
 
@@ -28,7 +25,12 @@ import static androidapplication.oregongoestocollege.org.itsaplan.ui.MainActivit
  */
 
 public class MyPlan extends ListActivity {
+
+
     private MasterBlock mMasterBlock;
+
+    int [] Images = {R.drawable.colleges_xxxhdpi, R.drawable.scholarships_xxxhdpi, R.drawable.actsat_xxxhdpi, R.drawable.residency_xxhdpi, R.drawable.calendar_xxxhdpi};
+    String [] myPlanOptions = {"Colleges", "Scholarships", "ACT / SAT", "Residency Info", "Calendar"};
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -69,10 +71,11 @@ public class MyPlan extends ListActivity {
         setContentView(R.layout.activity_myplan);
         ButterKnife.bind(this);
 
-        String [] MyPlanOptions = {"Colleges", "Scholarships", "ACT / SAT", "Residency Info", "Calendar"};
+        ListView listView = (ListView)findViewById(android.R.id.list);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,
-                MyPlanOptions);
+                myPlanOptions);
         setListAdapter(adapter);
 
 
@@ -83,11 +86,58 @@ public class MyPlan extends ListActivity {
         MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
 
+    }
+
+    
+
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        String getMyPlanOptions = myPlanOptions[position];
+        String message = String.format("%s is coming soon!",
+                getMyPlanOptions);
+
+        switch (getMyPlanOptions) {
+            case "Colleges":
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+                break;
+
+            case "Scholarships":
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+                break;
+
+            case "ACT / SAT":
+                Intent intentActsat = new Intent(MyPlan.this, Actsat.class);
+                startActivity(intentActsat);
+                break;
+
+            case "Residency Info":
+                Intent intentResidencyInfo = new Intent(MyPlan.this, ResidencyInfo.class);
+                startActivity(intentResidencyInfo);
+                break;
+
+            case "Calendar":
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+                break;
+
+            default:
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+                break;
+
+        }
+
 
 
     }
 
-//    @OnClick (R.id.CollegesMyPlan)
+
+    //    @OnClick (R.id.CollegesMyPlan)
 //    public void startCollegesActivity(View view){
 //        Toast.makeText(this, "My Plan College", Toast.LENGTH_LONG).show();
 //
