@@ -2,6 +2,7 @@ package androidapplication.oregongoestocollege.org.itsaplan.ui;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,11 +11,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import androidapplication.oregongoestocollege.org.itsaplan.R;
+import androidapplication.oregongoestocollege.org.itsaplan.adapters.MyPlanData;
+import androidapplication.oregongoestocollege.org.itsaplan.adapters.MyPlanListAdapter;
 import androidapplication.oregongoestocollege.org.itsaplan.blocks.MasterBlock;
 import butterknife.ButterKnife;
 
@@ -26,6 +38,7 @@ import static androidapplication.oregongoestocollege.org.itsaplan.ui.MainActivit
 
 public class MyPlan extends ListActivity {
 
+    private static final String TAG = "MyPlanUI";
 
     private MasterBlock mMasterBlock;
 
@@ -69,15 +82,33 @@ public class MyPlan extends ListActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myplan);
-        ButterKnife.bind(this);
 
-        ListView listView = (ListView)findViewById(android.R.id.list);
+        ListView listMyPlan = (ListView) findViewById(android.R.id.list);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,
-                myPlanOptions);
-        setListAdapter(adapter);
 
+        MyPlanData college = new MyPlanData(R.drawable.colleges_xxxhdpi, "Colleges");
+        MyPlanData scholarships = new MyPlanData(Images[1], myPlanOptions[1]);
+        MyPlanData actsat = new MyPlanData(Images[2], myPlanOptions[2]);
+        MyPlanData residencyinfo = new MyPlanData(Images[3], myPlanOptions[3]);
+        MyPlanData calendar = new MyPlanData(Images[4], myPlanOptions[4]);
+
+
+        // Add the MyPlanData object to the ArrayList
+        ArrayList<MyPlanData> myPlanDataList = new ArrayList<>();
+
+        myPlanDataList.add(college);
+        myPlanDataList.add(scholarships);
+        myPlanDataList.add(actsat);
+        myPlanDataList.add(residencyinfo);
+        myPlanDataList.add(calendar);
+
+        MyPlanListAdapter adapter = new MyPlanListAdapter(this, R.layout.myplan_list, myPlanDataList);
+        listMyPlan.setAdapter(adapter);
+
+    //        ArrayAdapter<String> adapterText = new ArrayAdapter<String>(this,
+    //                R.layout.myplan_list,
+    //                myPlanOptions);
+    //        listMyPlan.setAdapter(adapterText);
 
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -88,7 +119,6 @@ public class MyPlan extends ListActivity {
 
     }
 
-    
 
 
     @Override
@@ -143,5 +173,8 @@ public class MyPlan extends ListActivity {
 //
 //
 //    }
+
+
+
 
 }
