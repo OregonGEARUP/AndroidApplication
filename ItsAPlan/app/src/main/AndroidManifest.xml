@@ -63,10 +63,15 @@
 
         <activity android:name=".ui.ResidencyInfo"
             android:label="@string/nav_title_residencyinfo"
-            android:parentActivityName=".ui.ResidencyInfo">
+            android:parentActivityName=".ui.MyPlan">
 
         </activity>
 
+        <activity android:name=".ui.Calendar"
+            android:label="@string/nav_title_calendar"
+            android:parentActivityName=".ui.MyPlan">
+
+        </activity>
     </application>
 
 </manifest>

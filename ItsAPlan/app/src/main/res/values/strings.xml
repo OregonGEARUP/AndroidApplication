@@ -32,5 +32,6 @@
     <string name="title_welcome">Welcome to It\'s a Plan app!</string>
     <string name="nav_title_actsat">ACT / SAT</string>
     <string name="nav_title_residencyinfo">Residency Info</string>
+    <string name="nav_title_calendar">Calendar</string>
 
 </resources>

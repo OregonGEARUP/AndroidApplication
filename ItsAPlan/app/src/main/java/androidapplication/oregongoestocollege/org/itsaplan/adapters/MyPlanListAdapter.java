@@ -46,11 +46,11 @@ public class MyPlanListAdapter extends ArrayAdapter<MyPlanData>{
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.myPlanListImage);
-        TextView textView = (TextView) convertView.findViewById(R.id.myPlanListText);
+//        ImageView imageView = (ImageView) convertView.findViewById(R.id.myPlanListImage);
+//        TextView textView = (TextView) convertView.findViewById(R.id.myPlanListText);
 
-        imageView.setImageResource(imageId);
-        textView.setText(myPlanListItem);
+//        imageView.setImageResource(imageId);
+//        textView.setText(myPlanListItem);
 
         return convertView;
 

@@ -21,7 +21,7 @@ import static androidapplication.oregongoestocollege.org.itsaplan.ui.MainActivit
  * Created by Bikram Maharjan on 11/2/17.
  */
 
-public class Info extends MainActivity{
+public class Info extends AppCompatActivity{
 
     private MasterBlock mMasterBlock;
 

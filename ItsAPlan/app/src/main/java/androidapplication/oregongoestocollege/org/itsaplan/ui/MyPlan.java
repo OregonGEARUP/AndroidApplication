@@ -86,29 +86,29 @@ public class MyPlan extends ListActivity {
         ListView listMyPlan = (ListView) findViewById(android.R.id.list);
 
 
-        MyPlanData college = new MyPlanData(R.drawable.colleges_xxxhdpi, "Colleges");
-        MyPlanData scholarships = new MyPlanData(Images[1], myPlanOptions[1]);
-        MyPlanData actsat = new MyPlanData(Images[2], myPlanOptions[2]);
-        MyPlanData residencyinfo = new MyPlanData(Images[3], myPlanOptions[3]);
-        MyPlanData calendar = new MyPlanData(Images[4], myPlanOptions[4]);
+//        MyPlanData college = new MyPlanData(R.drawable.colleges_xxxhdpi, "Colleges");
+//        MyPlanData scholarships = new MyPlanData(Images[1], myPlanOptions[1]);
+//        MyPlanData actsat = new MyPlanData(Images[2], myPlanOptions[2]);
+//        MyPlanData residencyinfo = new MyPlanData(Images[3], myPlanOptions[3]);
+//        MyPlanData calendar = new MyPlanData(Images[4], myPlanOptions[4]);
+//
+//
+//        // Add the MyPlanData object to the ArrayList
+//        ArrayList<MyPlanData> myPlanDataList = new ArrayList<>();
+//
+//        myPlanDataList.add(college);
+//        myPlanDataList.add(scholarships);
+//        myPlanDataList.add(actsat);
+//        myPlanDataList.add(residencyinfo);
+//        myPlanDataList.add(calendar);
+//
+//        MyPlanListAdapter adapter = new MyPlanListAdapter(this, R.layout.myplan_list, myPlanDataList);
+//        listMyPlan.setAdapter(adapter);
 
-
-        // Add the MyPlanData object to the ArrayList
-        ArrayList<MyPlanData> myPlanDataList = new ArrayList<>();
-
-        myPlanDataList.add(college);
-        myPlanDataList.add(scholarships);
-        myPlanDataList.add(actsat);
-        myPlanDataList.add(residencyinfo);
-        myPlanDataList.add(calendar);
-
-        MyPlanListAdapter adapter = new MyPlanListAdapter(this, R.layout.myplan_list, myPlanDataList);
-        listMyPlan.setAdapter(adapter);
-
-    //        ArrayAdapter<String> adapterText = new ArrayAdapter<String>(this,
-    //                R.layout.myplan_list,
-    //                myPlanOptions);
-    //        listMyPlan.setAdapter(adapterText);
+            ArrayAdapter<String> adapterText = new ArrayAdapter<String>(this,
+                    R.layout.myplan_list,
+                    myPlanOptions);
+            listMyPlan.setAdapter(adapterText);
 
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -151,8 +151,8 @@ public class MyPlan extends ListActivity {
                 break;
 
             case "Calendar":
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-
+                Intent intentCalendar = new Intent(MyPlan.this, Calendar.class);
+                startActivity(intentCalendar);
                 break;
 
             default:
